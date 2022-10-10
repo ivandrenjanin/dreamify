@@ -1,25 +1,22 @@
-import { ApiProperty } from '@nestjs/swagger';
 import {
   Column,
   CreateDateColumn,
   PrimaryGeneratedColumn,
-  BaseEntity as Base,
+  Entity,
 } from 'typeorm';
 import { DreamType } from '../enums/dream-type.enum';
 
-export class Dream extends Base {
-  @ApiProperty()
+@Entity()
+export class Dream {
   @PrimaryGeneratedColumn()
   public readonly id!: number;
 
-  @ApiProperty()
   @CreateDateColumn({
     name: 'date',
     type: 'timestamp without time zone',
   })
   public date!: Date;
 
-  @ApiProperty()
   @Column({
     name: 'title',
     type: String,
@@ -27,7 +24,6 @@ export class Dream extends Base {
   })
   public title!: string;
 
-  @ApiProperty()
   @Column({
     name: 'description',
     type: String,
@@ -35,7 +31,6 @@ export class Dream extends Base {
   })
   public description!: string;
 
-  @ApiProperty()
   @Column({
     type: 'enum',
     nullable: false,

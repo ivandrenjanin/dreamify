@@ -15,4 +15,12 @@ describe('DreamService', () => {
   it('should be defined', () => {
     expect(service).toBeDefined();
   });
+
+  it('should return an array of dream types', () => {
+    expect(service.getAllDreamTypes()).toEqual({
+      dream: {
+        type: ['happy', 'sad', 'scary', 'exciting'],
+      },
+    });
+  });
 });

@@ -1,0 +1,89 @@
+{
+	"info": {
+		"_postman_id": "20eaebb7-6e57-43b0-8f00-47681d89b834",
+		"name": "Dreamify Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2913552"
+	},
+	"item": [
+		{
+			"name": "Get all dream types",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/dreams/types",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"dreams",
+						"types"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get all dream types",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/dreams/types",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"dreams",
+								"types"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "53"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"35-dlLn+TwOUGPn1BqdWZMiA4E5b9o\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 10 Oct 2022 10:09:15 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"dream\": {\n        \"type\": [\n            \"happy\",\n            \"sad\",\n            \"scary\",\n            \"exciting\"\n        ]\n    }\n}"
+				}
+			]
+		}
+	]
+}
