@@ -1,25 +1,48 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
-import { AppModule } from './../src/app.module';
 import { GlobalModule } from '../src/modules/global/global.module';
 import { DreamModule } from '../src/modules/dream/dream.module';
+import { DreamService } from '../src/modules/dream/dream.service';
 
 describe('DreamController (e2e)', () => {
   let app: INestApplication;
+  let dreamService: DreamService;
 
-  beforeEach(async () => {
+  beforeAll(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
       imports: [GlobalModule, DreamModule],
     }).compile();
 
     app = moduleFixture.createNestApplication();
+    dreamService = moduleFixture.get<DreamService>(DreamService);
     await app.init();
   });
 
+  beforeEach(async () => {
+    await dreamService.destroyAllDreams();
+  });
+
   afterAll(async () => {
+    await dreamService.destroyAllDreams();
     await app.close();
   });
+
+  const createDream = async (overrides = {}) => {
+    const body = {
+      title: 'test',
+      description: 'test',
+      type: 'happy',
+      ...overrides,
+    };
+
+    const createResponse = await request(app.getHttpServer())
+      .post('/dreams')
+      .send(body)
+      .expect(201);
+
+    return createResponse.body;
+  };
 
   describe('Dream', () => {
     describe('CREATE', () => {
@@ -102,6 +125,8 @@ describe('DreamController (e2e)', () => {
       });
 
       it('should update a dream', async () => {
+        const dream = await createDream();
+
         const body = {
           title: 'test',
           description: 'test',
@@ -109,7 +134,7 @@ describe('DreamController (e2e)', () => {
         };
 
         const response = await request(app.getHttpServer())
-          .patch('/dreams/1')
+          .patch(`/dreams/${dream.id}`)
           .send(body)
           .expect(200);
 
@@ -127,19 +152,10 @@ describe('DreamController (e2e)', () => {
       });
 
       it('should delete a dream', async () => {
-        const body = {
-          title: 'test',
-          description: 'test',
-          type: 'happy',
-        };
-
-        const createResponse = await request(app.getHttpServer())
-          .post('/dreams')
-          .send(body)
-          .expect(201);
+        const dream = await createDream();
 
         const response = await request(app.getHttpServer())
-          .delete(`/dreams/${createResponse.body.id}`)
+          .delete(`/dreams/${dream.id}`)
           .expect(200);
 
         expect(response.body).toEqual({ message: 'Dream Deleted' });

@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { DreamType } from '../../enums/dream-type.enum';
 
+import { DreamType } from '../../enums/dream-type.enum';
 import { DreamController } from './dream.controller';
 import { DreamService } from './dream.service';
 
@@ -32,6 +32,14 @@ describe('DreamController', () => {
             deleteDream: jest
               .fn()
               .mockResolvedValue({ message: 'Dream Deleted' }),
+            getDreams: jest.fn().mockResolvedValue({
+              data: [testDream],
+              count: 1,
+              currentPage: 1,
+              nextPage: null,
+              prevPage: null,
+              lastPage: 1,
+            }),
           },
         },
       ],
@@ -90,6 +98,24 @@ describe('DreamController', () => {
       it('should propagate the service success result', async () => {
         await expect(controller.deleteDream(1)).resolves.toEqual({
           message: 'Dream Deleted',
+        });
+      });
+    });
+
+    describe('GET', () => {
+      it('should propagate the service success result', async () => {
+        await expect(
+          controller.getDreams({
+            page: 1,
+            take: 10,
+          }),
+        ).resolves.toEqual({
+          data: [testDream],
+          count: 1,
+          currentPage: 1,
+          nextPage: null,
+          prevPage: null,
+          lastPage: 1,
         });
       });
     });

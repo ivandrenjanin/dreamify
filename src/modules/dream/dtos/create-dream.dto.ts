@@ -1,4 +1,5 @@
 import { IsIn, IsString } from 'class-validator';
+
 import { DreamType } from '../../../enums/dream-type.enum';
 
 export class CreateDreamDto {
