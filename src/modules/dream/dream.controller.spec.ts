@@ -7,6 +7,14 @@ import { DreamService } from './dream.service';
 describe('DreamController', () => {
   let controller: DreamController;
 
+  const testDream = {
+    id: 1,
+    title: 'test',
+    description: 'test',
+    type: DreamType.HAPPY,
+    date: '2022-01-01T00:00:00.000Z',
+  };
+
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [DreamController],
@@ -19,13 +27,8 @@ describe('DreamController', () => {
                 type: ['happy', 'sad', 'scary', 'exciting'],
               },
             }),
-            createDream: jest.fn().mockResolvedValue({
-              id: 1,
-              title: 'test',
-              description: 'test',
-              type: DreamType.HAPPY,
-              date: '2022-01-01T00:00:00.000Z',
-            }),
+            createDream: jest.fn().mockResolvedValue(testDream),
+            updateDream: jest.fn().mockResolvedValue(testDream),
           },
         },
       ],
@@ -49,6 +52,24 @@ describe('DreamController', () => {
       it('should propagate the service success result', async () => {
         await expect(
           controller.createDream({
+            title: 'test',
+            description: 'test',
+            type: 'happy' as DreamType,
+          }),
+        ).resolves.toEqual({
+          id: 1,
+          title: 'test',
+          description: 'test',
+          type: 'happy',
+          date: '2022-01-01T00:00:00.000Z',
+        });
+      });
+    });
+
+    describe('UPDATE', () => {
+      it('should propagate the service success result', async () => {
+        await expect(
+          controller.updateDream(1, {
             title: 'test',
             description: 'test',
             type: 'happy' as DreamType,

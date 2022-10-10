@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "20eaebb7-6e57-43b0-8f00-47681d89b834",
+		"_postman_id": "3b0d8559-5433-4415-846a-a99810b58c11",
 		"name": "Dreamify Collection",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "2913552"
@@ -235,6 +235,244 @@
 					],
 					"cookie": [],
 					"body": "{\n    \"statusCode\": 400,\n    \"message\": [\n        \"type must be one of the following values: happy, sad, scary, exciting\",\n        \"type must be a string\"\n    ],\n    \"error\": \"Bad Request\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Update a Dream",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Dream Title 2\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/dreams/:id",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"dreams",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "11111"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "No Fields Provided Error Example",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/dreams/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"dreams",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "77"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"4d-/WiKZ8nPTfnLiNwCd6DRWGd9gjk\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 10 Oct 2022 11:50:30 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 400,\n    \"message\": \"Invalid Fields Provided.\",\n    \"error\": \"Bad Request\"\n}"
+				},
+				{
+					"name": "Not Found Dream Error Example",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Dream Title 2\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/dreams/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"dreams",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "11111"
+								}
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "40"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"28-oR73Vb/YPfDbgDgtA//MdHJasVY\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 10 Oct 2022 11:51:58 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"Not Found\"\n}"
+				},
+				{
+					"name": "Update a Dream Response Example",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Dream Title 2\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/dreams/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"dreams",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "115"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"73-g0jVTAGH0HNUL1XpfeA/KRIG8Yk\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 10 Oct 2022 11:52:27 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 1,\n    \"date\": \"2022-10-10T10:46:46.798Z\",\n    \"title\": \"Dream Title 2\",\n    \"description\": \"Dream Description\",\n    \"type\": \"happy\"\n}"
 				}
 			]
 		}

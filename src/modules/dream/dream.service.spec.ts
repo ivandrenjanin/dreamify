@@ -26,6 +26,7 @@ describe('DreamService', () => {
           provide: getRepositoryToken(Dream),
           useValue: {
             save: jest.fn().mockResolvedValue(testDream),
+            findOne: jest.fn().mockResolvedValue(testDream),
           },
         },
       ],
@@ -59,6 +60,42 @@ describe('DreamService', () => {
             type: 'happy' as DreamType,
           }),
         ).resolves.toEqual(testDream);
+      });
+    });
+
+    describe('UPDATE', () => {
+      it('should throw an error if the dream with provided id does not exist', () => {
+        const spy = jest.spyOn(repository, 'findOne').mockResolvedValue(null);
+
+        expect(
+          service.updateDream(1, {
+            title: 'test',
+            description: 'test',
+            type: 'happy' as DreamType,
+          }),
+        ).rejects.toThrowError('Not Found');
+
+        expect(spy).toBeCalledTimes(1);
+      });
+
+      it('should throw an error if the dto is an empty object', () => {
+        expect(service.updateDream(1, {})).rejects.toThrowError(
+          'No Fields Provided',
+        );
+      });
+
+      it('should propagate data from the repository method succesfully', () => {
+        const spy = jest.spyOn(repository, 'findOne');
+
+        expect(
+          service.updateDream(1, {
+            title: 'test',
+            description: 'test',
+            type: 'happy' as DreamType,
+          }),
+        ).resolves.toEqual(testDream);
+
+        expect(spy).toBeCalledTimes(1);
       });
     });
   });

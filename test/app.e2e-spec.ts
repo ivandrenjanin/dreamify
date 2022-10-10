@@ -58,5 +58,67 @@ describe('DreamController (e2e)', () => {
         });
       });
     });
+
+    describe('UPDATE', () => {
+      it('should throw an error if body is invalid', async () => {
+        const body = {
+          title: 'test',
+          description: 'test',
+          type: 'UNKNOWN_TYPE',
+        };
+
+        const response = await request(app.getHttpServer())
+          .patch('/dreams/1')
+          .send(body)
+          .expect(400);
+
+        expect(response.body).toHaveProperty('statusCode', 400);
+        expect(response.body).toHaveProperty('error', 'Bad Request');
+      });
+
+      it('should throw an error if body is empty', async () => {
+        const body = {};
+
+        const response = await request(app.getHttpServer())
+          .patch('/dreams/1')
+          .send(body)
+          .expect(400);
+
+        expect(response.body).toHaveProperty('statusCode', 400);
+        expect(response.body).toHaveProperty('error', 'Bad Request');
+      });
+
+      it('should throw an error if dream is not found', async () => {
+        const body = {
+          title: 'test',
+          description: 'test',
+          type: 'happy',
+        };
+
+        await request(app.getHttpServer())
+          .patch('/dreams/9999')
+          .send(body)
+          .expect(404);
+      });
+
+      it('should update a dream', async () => {
+        const body = {
+          title: 'test',
+          description: 'test',
+          type: 'happy',
+        };
+
+        const response = await request(app.getHttpServer())
+          .patch('/dreams/1')
+          .send(body)
+          .expect(200);
+
+        expect(response.body).toEqual({
+          ...body,
+          id: expect.any(Number),
+          date: expect.any(String),
+        });
+      });
+    });
   });
 });
