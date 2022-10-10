@@ -12,12 +12,10 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/dreams/types",
-					"protocol": "http",
+					"raw": "{{baseUrl}}/dreams/types",
 					"host": [
-						"localhost"
+						"{{baseUrl}}"
 					],
-					"port": "3000",
 					"path": [
 						"dreams",
 						"types"
@@ -84,6 +82,188 @@
 					"body": "{\n    \"dream\": {\n        \"type\": [\n            \"happy\",\n            \"sad\",\n            \"scary\",\n            \"exciting\"\n        ]\n    }\n}"
 				}
 			]
+		},
+		{
+			"name": "Create a Dream",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Dream Title\",\n    \"description\": \"Dream Description\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/dreams",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"dreams"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Create a Dream Success Response Example",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Dream Title\",\n    \"description\": \"Dream Description\",\n    \"type\": \"happy\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/dreams",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"dreams"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "113"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"71-jGegCd5xLmg5tphSWzmTWhHwRbw\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 10 Oct 2022 10:46:46 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"title\": \"Dream Title\",\n    \"description\": \"Dream Description\",\n    \"type\": \"happy\",\n    \"id\": 1,\n    \"date\": \"2022-10-10T10:46:46.798Z\"\n}"
+				},
+				{
+					"name": "Create a Dream Missing Type Example",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Dream Title\",\n    \"description\": \"Dream Description\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/dreams",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"dreams"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "148"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"94-/keqGfYKp37q2u9ItGCLfkf+JkA\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 10 Oct 2022 10:47:15 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 400,\n    \"message\": [\n        \"type must be one of the following values: happy, sad, scary, exciting\",\n        \"type must be a string\"\n    ],\n    \"error\": \"Bad Request\"\n}"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:3000",
+			"type": "string"
 		}
 	]
 }
