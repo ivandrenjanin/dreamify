@@ -120,5 +120,30 @@ describe('DreamController (e2e)', () => {
         });
       });
     });
+
+    describe('DELETE', () => {
+      it('should throw an error if dream is not found', async () => {
+        await request(app.getHttpServer()).delete('/dreams/9999').expect(404);
+      });
+
+      it('should delete a dream', async () => {
+        const body = {
+          title: 'test',
+          description: 'test',
+          type: 'happy',
+        };
+
+        const createResponse = await request(app.getHttpServer())
+          .post('/dreams')
+          .send(body)
+          .expect(201);
+
+        const response = await request(app.getHttpServer())
+          .delete(`/dreams/${createResponse.body.id}`)
+          .expect(200);
+
+        expect(response.body).toEqual({ message: 'Dream Deleted' });
+      });
+    });
   });
 });

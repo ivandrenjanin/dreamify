@@ -29,6 +29,9 @@ describe('DreamController', () => {
             }),
             createDream: jest.fn().mockResolvedValue(testDream),
             updateDream: jest.fn().mockResolvedValue(testDream),
+            deleteDream: jest
+              .fn()
+              .mockResolvedValue({ message: 'Dream Deleted' }),
           },
         },
       ],
@@ -80,6 +83,13 @@ describe('DreamController', () => {
           description: 'test',
           type: 'happy',
           date: '2022-01-01T00:00:00.000Z',
+        });
+      });
+    });
+    describe('DELETE', () => {
+      it('should propagate the service success result', async () => {
+        await expect(controller.deleteDream(1)).resolves.toEqual({
+          message: 'Dream Deleted',
         });
       });
     });

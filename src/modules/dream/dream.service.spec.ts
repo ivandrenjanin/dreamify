@@ -27,6 +27,10 @@ describe('DreamService', () => {
           useValue: {
             save: jest.fn().mockResolvedValue(testDream),
             findOne: jest.fn().mockResolvedValue(testDream),
+            delete: jest.fn().mockResolvedValue({
+              raw: 'string',
+              affected: 1,
+            }),
           },
         },
       ],
@@ -97,6 +101,26 @@ describe('DreamService', () => {
 
         expect(spy).toBeCalledTimes(1);
       });
+    });
+  });
+
+  describe('DELETE', () => {
+    it('should throw an error if the dream with provided id does not exist', () => {
+      const spy = jest.spyOn(repository, 'findOne').mockResolvedValue(null);
+
+      expect(service.deleteDream(1)).rejects.toThrowError('Not Found');
+
+      expect(spy).toBeCalledTimes(1);
+    });
+
+    it('should propagate data from the repository method succesfully', () => {
+      const spy = jest.spyOn(repository, 'findOne');
+
+      expect(service.deleteDream(1)).resolves.toEqual({
+        message: 'Dream Deleted',
+      });
+
+      expect(spy).toBeCalledTimes(1);
     });
   });
 });
