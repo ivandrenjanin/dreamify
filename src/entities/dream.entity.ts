@@ -1,9 +1,5 @@
-import {
-  Column,
-  CreateDateColumn,
-  PrimaryGeneratedColumn,
-  Entity,
-} from 'typeorm';
+import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from 'typeorm';
+
 import { DreamType } from '../enums/dream-type.enum';
 
 @Entity()

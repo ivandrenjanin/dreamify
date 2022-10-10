@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
-import { DreamService } from './dream.service';
+
 import { DreamController } from './dream.controller';
+import { DreamService } from './dream.service';
 
 @Module({
   providers: [DreamService],
