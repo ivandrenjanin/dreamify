@@ -90,7 +90,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"title\": \"Dream Title\",\n    \"description\": \"Dream Description\"\n}",
+					"raw": "{\n    \"title\": \"Dream Title\",\n    \"description\": \"Dream Description\",\n    \"type\": \"happy\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -245,7 +245,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"title\": \"Dream Title 2\"\n}",
+					"raw": "{\n    \"title\": \"Title Updated\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -264,7 +264,7 @@
 					"variable": [
 						{
 							"key": "id",
-							"value": "11111"
+							"value": "1"
 						}
 					]
 				}
@@ -473,6 +473,152 @@
 					],
 					"cookie": [],
 					"body": "{\n    \"id\": 1,\n    \"date\": \"2022-10-10T10:46:46.798Z\",\n    \"title\": \"Dream Title 2\",\n    \"description\": \"Dream Description\",\n    \"type\": \"happy\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get Dreams by Query",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/dreams?from=2020-10-10&to=2020-12-31&type=exciting",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"dreams"
+					],
+					"query": [
+						{
+							"key": "title",
+							"value": "Test",
+							"description": "Title of a Dream",
+							"disabled": true
+						},
+						{
+							"key": "from",
+							"value": "2020-10-10",
+							"description": "Date from which to query Dreams"
+						},
+						{
+							"key": "to",
+							"value": "2020-12-31",
+							"description": "Date to which to query Dreams"
+						},
+						{
+							"key": "take",
+							"value": null,
+							"description": "Limit number of dreams per request",
+							"disabled": true
+						},
+						{
+							"key": "page",
+							"value": null,
+							"description": "Which page to fetch",
+							"disabled": true
+						},
+						{
+							"key": "type",
+							"value": "exciting",
+							"description": "Type of a Dream"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get Dreams by Query Example Response",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/dreams",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"dreams"
+							],
+							"query": [
+								{
+									"key": "title",
+									"value": "Test",
+									"description": "Title of a Dream",
+									"disabled": true
+								},
+								{
+									"key": "from",
+									"value": "2020-10-10",
+									"description": "Date from which to query Dreams",
+									"disabled": true
+								},
+								{
+									"key": "to",
+									"value": "2020-12-31",
+									"description": "Date to which to query Dreams",
+									"disabled": true
+								},
+								{
+									"key": "take",
+									"value": "",
+									"description": "Limit number of dreams per request",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "",
+									"description": "Which page to fetch",
+									"disabled": true
+								},
+								{
+									"key": "type",
+									"value": "exciting",
+									"description": "Type of a Dream",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "771"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"303-fJ220K1YSw5ynnsaTdv/mHbvGbI\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 10 Oct 2022 15:52:39 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": [\n        {\n            \"id\": 36,\n            \"date\": \"2022-10-10T15:25:05.017Z\",\n            \"title\": \"Dream Title\",\n            \"description\": \"Dream Description\",\n            \"type\": \"happy\"\n        },\n        {\n            \"id\": 37,\n            \"date\": \"2022-10-10T15:25:50.829Z\",\n            \"title\": \"Dream Title\",\n            \"description\": \"Dream Description\",\n            \"type\": \"happy\"\n        },\n        {\n            \"id\": 38,\n            \"date\": \"2022-10-10T15:26:44.477Z\",\n            \"title\": \"Dream Title\",\n            \"description\": \"Dream Description\",\n            \"type\": \"happy\"\n        },\n        {\n            \"id\": 39,\n            \"date\": \"2022-10-10T15:27:03.436Z\",\n            \"title\": \"Dream Title\",\n            \"description\": \"Dream Description\",\n            \"type\": \"happy\"\n        },\n        {\n            \"id\": 40,\n            \"date\": \"2022-10-10T15:27:57.530Z\",\n            \"title\": \"Dream Title\",\n            \"description\": \"Dream Description\",\n            \"type\": \"happy\"\n        },\n        {\n            \"id\": 41,\n            \"date\": \"2022-10-10T15:28:25.209Z\",\n            \"title\": \"Dream Title\",\n            \"description\": \"Dream Description\",\n            \"type\": \"happy\"\n        }\n    ],\n    \"count\": 6,\n    \"currentPage\": 1,\n    \"nextPage\": null,\n    \"prevPage\": null,\n    \"lastPage\": 1\n}"
 				}
 			]
 		}
